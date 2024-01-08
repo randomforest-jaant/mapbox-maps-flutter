@@ -9,8 +9,14 @@ final class GesturesController: NSObject, GesturesSettingsInterface, UIGestureRe
     func gestureManager(_ gestureManager: MapboxMaps.GestureManager, didBegin gestureType: MapboxMaps.GestureType) {}
 
     func gestureManager(_ gestureManager: MapboxMaps.GestureManager, didEnd gestureType: MapboxMaps.GestureType, willAnimate: Bool) {
-        guard gestureType == .singleTap else {
-            return
+        switch gestureType {
+        case .pan:
+            let point = Point(mapView.mapboxMap.coordinate(for: gestureManager.panGestureRecognizer.location(in: mapView)))
+            self.onGestureListener?.onScroll(FLT_GESTURESScreenCoordinate.makeWith(x: point.coordinates.latitude, y: point.coordinates.longitude), completion: {_ in })
+        case .singleTap:
+            let point = gestureManager.singleTapGestureRecognizer.location(in: mapView)
+            self.onGestureListener?.onTap(FLT_GESTURESScreenCoordinate.makeWith(x: NSNumber(value: point.x), y: NSNumber(value: point.y)), completion: {_ in })
+        default: break
         }
 
         let point = Point(mapView.mapboxMap.coordinate(for: gestureManager.singleTapGestureRecognizer.location(in: mapView)))
