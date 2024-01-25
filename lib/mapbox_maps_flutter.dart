@@ -12,6 +12,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
 import 'package:turf/turf.dart' as turf;
+import 'package:turf/turf.dart';
 
 import 'src/proxy_binary_messenger.dart' show ProxyBinaryMessenger;
 
