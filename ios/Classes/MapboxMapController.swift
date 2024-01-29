@@ -194,7 +194,7 @@ class MapboxMapController: NSObject, FlutterPlatformView {
     }
 
     private func releaseMethodChannels() {
-        channel.setMethodCallHandler(nil)
+//        channel.setMethodCallHandler(nil)
         SetUpFLTStyleManager(proxyBinaryMessenger, nil)
         SetUpFLT_CameraManager(proxyBinaryMessenger, nil)
         SetUpFLT_MapInterface(proxyBinaryMessenger, nil)
