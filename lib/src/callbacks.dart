@@ -111,3 +111,7 @@ typedef void OnMapLongTapListener(ScreenCoordinate coordinate);
 
 /// Gesture listener called on map scroll.
 typedef void OnMapScrollListener(ScreenCoordinate coordinate);
+
+/// Definition for listener invoked when the map location updates.
+typedef void OnLocationChangeListener(
+    MapLocationChangeEventData mapLocationChangeEventData);

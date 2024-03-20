@@ -67,6 +67,7 @@ class MapWidget extends StatefulWidget {
     this.onTapListener,
     this.onLongTapListener,
     this.onScrollListener,
+    this.onLocationChangeListener,
   }) : super(key: key) {
     if (onStyleLoadedListener != null) {
       _eventTypes.add(_MapEvent.styleLoaded);
@@ -109,6 +110,9 @@ class MapWidget extends StatefulWidget {
     }
     if (onResourceRequestListener != null) {
       _eventTypes.add(_MapEvent.resourceRequest);
+    }
+    if (onLocationChangeListener != null) {
+      _eventTypes.add(_MapEvent.locationChange);
     }
   }
 
@@ -182,6 +186,9 @@ class MapWidget extends StatefulWidget {
 
   /// Invoked when map makes a request to load required resources.
   final OnResourceRequestListener? onResourceRequestListener;
+
+  /// Invoked when the Map's location has been updated.
+  final OnLocationChangeListener? onLocationChangeListener;
 
   /// Which gestures should be consumed by the map.
   ///
@@ -271,6 +278,7 @@ class _MapWidgetState extends State<MapWidget> {
       onMapTapListener: widget.onTapListener,
       onMapLongTapListener: widget.onLongTapListener,
       onMapScrollListener: widget.onScrollListener,
+      onLocationChangeListener: widget.onLocationChangeListener
     );
     _controller.complete(controller);
     if (widget.onMapCreated != null) {

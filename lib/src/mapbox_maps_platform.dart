@@ -26,6 +26,8 @@ class _MapboxMapsPlatform {
   final onStyleImageUnusedPlatform =
       ArgumentCallbacks<StyleImageUnusedEventData>();
   final onResourceRequestPlatform = ArgumentCallbacks<ResourceEventData>();
+  final onLocationChangePlatform =
+      ArgumentCallbacks<MapLocationChangeEventData>();
 
   final int _channelSuffix = _suffixesRegistry.getSuffix();
   late MethodChannel _channel;
@@ -102,6 +104,10 @@ class _MapboxMapsPlatform {
       case _MapEvent.resourceRequest:
         onResourceRequestPlatform(
             ResourceEventData.fromJson(jsonDecode(call.arguments)));
+        break;
+      case _MapEvent.locationChange:
+        onLocationChangePlatform(
+            MapLocationChangeEventData.fromJson(jsonDecode(call.arguments)));
         break;
       default:
         throw MissingPluginException();
