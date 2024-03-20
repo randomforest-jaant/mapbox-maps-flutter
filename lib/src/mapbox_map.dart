@@ -21,6 +21,7 @@ class MapboxMap extends ChangeNotifier {
     this.onMapTapListener,
     this.onMapLongTapListener,
     this.onMapScrollListener,
+    this.onLocationChangeListener,
   }) : _mapboxMapsPlatform = mapboxMapsPlatform {
     _proxyBinaryMessenger = _mapboxMapsPlatform.binaryMessenger;
 
@@ -95,6 +96,11 @@ class MapboxMap extends ChangeNotifier {
         onResourceRequestListener?.call(argument);
       });
     }
+    if (onLocationChangeListener != null) {
+      _mapboxMapsPlatform.onLocationChangePlatform.add((argument) {
+        onLocationChangeListener?.call(argument);
+      });
+    }
     _setupGestures();
   }
 
@@ -147,6 +153,9 @@ class MapboxMap extends ChangeNotifier {
 
   /// Invoked when map makes a request to load required resources.
   final OnResourceRequestListener? onResourceRequestListener;
+
+  /// Invoked when the Map's location has been updated.
+  final OnLocationChangeListener? onLocationChangeListener;
 
   /// The currently loaded Style]object.
   late StyleManager style =

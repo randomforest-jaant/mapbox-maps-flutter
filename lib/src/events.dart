@@ -216,6 +216,16 @@ class ResourceEventData {
         cancelled = json['cancelled'];
 }
 
+/// The class for map-loaded event in Observer
+class MapLocationChangeEventData {
+  /// The `timeInterval.begin` represents the time when a style is set, and the
+  /// `timeInterval.end` is taken when the `map` is fully loaded.
+  final turf.Position position;
+
+  MapLocationChangeEventData.fromJson(Map<String, dynamic> json)
+      : position = turf.Position(json['coordinates'][0], json["coordinates"][1]);
+}
+
 /// Describes data source of request for resource-request event.
 /// @param value String value of this enum
 enum DataSourceType {

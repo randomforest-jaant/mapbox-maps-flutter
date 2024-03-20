@@ -111,3 +111,7 @@ typedef void OnMapLongTapListener(MapContentGestureContext context);
 
 /// Gesture listener called on map scroll.
 typedef void OnMapScrollListener(MapContentGestureContext context);
+
+/// Definition for listener invoked when the map location updates.
+typedef void OnLocationChangeListener(
+    MapLocationChangeEventData mapLocationChangeEventData);

@@ -230,8 +230,8 @@ class LocationPageBodyState extends State<LocationPageBody> {
         mapboxMap?.location.getSettings().then(
             (value) => ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text("""
-                  Location settings : 
-                    enabled : ${value.enabled}, 
+                  Location settings :
+                    enabled : ${value.enabled},
                     puckBearingEnabled : ${value.puckBearingEnabled}
                     puckBearing : ${value.puckBearing}
                     pulsing : ${value.pulsingEnabled}
@@ -251,8 +251,12 @@ class LocationPageBodyState extends State<LocationPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    final MapWidget mapWidget =
-        MapWidget(key: ValueKey("mapWidget"), onMapCreated: _onMapCreated);
+    final MapWidget mapWidget = MapWidget(key: ValueKey("mapWidget"),
+      onMapCreated: _onMapCreated,
+      onLocationChangeListener: (mapLocationChangeEventData) {
+        print(mapLocationChangeEventData);
+      }
+    );
 
     final List<Widget> listViewChildren = <Widget>[];
 

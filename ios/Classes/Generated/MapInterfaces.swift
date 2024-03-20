@@ -341,6 +341,7 @@ enum _MapEvent: Int {
   case renderFrameStarted = 11
   case renderFrameFinished = 12
   case resourceRequest = 13
+  case locationChange = 14
 }
 
 /// The distance on each side between rectangles, when one is contained into other.
