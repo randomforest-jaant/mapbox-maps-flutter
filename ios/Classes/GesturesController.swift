@@ -13,8 +13,8 @@ final class GesturesController: NSObject, GesturesSettingsInterface, UIGestureRe
             return
         }
 
-        let point = Point(mapView.mapboxMap.coordinate(for: gestureManager.singleTapGestureRecognizer.location(in: mapView)))
-        self.onGestureListener?.onTap(coordinate: ScreenCoordinate(x: point.coordinates.latitude, y: point.coordinates.longitude), completion: {_ in })
+        let touchPoint = gestureManager.singleTapGestureRecognizer.location(in: mapView)
+        onGestureListener?.onTap(coordinate: touchPoint.toFLTScreenCoordinate(), completion: { _ in })
     }
 
     func gestureManager(_ gestureManager: MapboxMaps.GestureManager, didEndAnimatingFor gestureType: MapboxMaps.GestureType) {}
